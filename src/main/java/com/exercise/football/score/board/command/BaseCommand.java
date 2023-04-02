@@ -1,6 +1,14 @@
 package com.exercise.football.score.board.command;
 
-public interface BaseCommand{
+public abstract class BaseCommand{
 
-    String getGameId();
+    private final String gameId;
+
+    public BaseCommand(String gameId){
+        this.gameId=gameId;
+    }
+
+    public String getGameId(){
+        return gameId;
+    }
 }

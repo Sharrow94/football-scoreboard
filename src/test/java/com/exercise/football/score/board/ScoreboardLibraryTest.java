@@ -78,7 +78,8 @@ class ScoreboardLibraryTest {
         //when
         scoreBoard.finishGame(new FinishGameCommand(valueOf(1L)));
         //then
-        assertEquals(0, scoreBoard.getGames().size());
+        assertEquals(1, scoreBoard.getGames().size());
+        assertEquals(GameStatus.FINISHED,scoreBoard.getGames().get(0).getStatus());
     }
 
     @Test

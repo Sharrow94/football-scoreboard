@@ -19,9 +19,9 @@ public class ScoreBoard implements ScoreBoardService {
 
     @Override
     public void startGame(StartGameCommand startGameCommand) {
-        String gameId = startGameCommand.gameId();
-        String homeTeam = startGameCommand.homeTeam();
-        String awayTeam = startGameCommand.awayTeam();
+        String gameId = startGameCommand.getGameId();
+        String homeTeam = startGameCommand.getHomeTeam();
+        String awayTeam = startGameCommand.getAwayTeam();
         if (allNotNull(gameId, homeTeam, awayTeam)) {
             games.add(new Game(gameId, homeTeam, awayTeam));
         } else {
@@ -33,8 +33,8 @@ public class ScoreBoard implements ScoreBoardService {
     public void updateScore(UpdateScoreCommand command) {
         updateCommandValidation(command);
         Game game = findGameInProgressValidation(command);
-        game.getHomeTeam().setScore(command.homeTeam());
-        game.getAwayTeam().setScore(command.awayTeam());
+        game.getHomeTeam().setScore(command.getHomeTeam());
+        game.getAwayTeam().setScore(command.getAwayTeam());
     }
 
     @Override
@@ -54,8 +54,8 @@ public class ScoreBoard implements ScoreBoardService {
     }
 
     private void updateCommandValidation(UpdateScoreCommand command) {
-        Integer homeTeam = command.homeTeam();
-        Integer awayTeam = command.awayTeam();
+        Integer homeTeam = command.getHomeTeam();
+        Integer awayTeam = command.getAwayTeam();
         if (!(homeTeam != null && homeTeam >= 0 && awayTeam != null && awayTeam >= 0)) {
             throw new ScoreboardException("UpdateCommand in incorrect state");
         }
