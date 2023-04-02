@@ -43,10 +43,12 @@ public class ScoreBoard implements ScoreBoardService {
         game.setStatus(GameStatus.FINISHED);
     }
 
+    @Override
     public List<Game> getGames() {
         return this.games;
     }
 
+    @Override
     public List<Game> getSummary() {
         return games.stream().filter(game -> game.getStatus().equals(GameStatus.STARTED)).sorted().collect(Collectors.toList());
     }
